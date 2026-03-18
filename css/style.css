@@ -110,6 +110,22 @@ h1, h2, h3, h4, h5, h6,
   font-family: 'Syne', system-ui, -apple-system, sans-serif;
 }
 
+/* ── HERO AVATAR ─────────────────────────────────────────────────────────────
+   Centered circular profile picture above the hero name                     */
+.hero-avatar-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.hero-avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 0 6px rgba(30, 58, 138, 0.35);
+}
+
 /* ── NAVBAR ─────────────────────────────────────────────────────────────────
    Figma: white bg, 1px bottom border #e5e5e5, 64px height
    Overridden here to match the navy theme                                    */

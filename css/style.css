@@ -1,0 +1,126 @@
+/* css/style.css */
+
+/* ================================================================
+   STEP 1: Override Bootstrap CSS custom properties at :root.
+   This file is loaded AFTER Bootstrap CDN, so these values
+   take precedence over Bootstrap defaults globally.
+   ================================================================ */
+
+:root {
+  /* --- Brand Colors: dark navy/teal palette --- */
+  --bs-primary: #14B8A6;           /* teal accent */
+  --bs-primary-rgb: 20, 184, 166;
+  --bs-secondary: #0F766E;         /* deep teal secondary */
+  --bs-secondary-rgb: 15, 118, 110;
+
+  /* --- Body Colors --- */
+  --bs-body-color: #1E293B;
+  --bs-body-bg: #F0FDFA;           /* very light teal-tinted background */
+
+  /* --- Typography: Syne for headings, Inter for body --- */
+  --bs-font-sans-serif: 'Syne', system-ui, -apple-system, sans-serif;
+  --bs-body-font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --bs-body-font-size: 1rem;
+  --bs-body-line-height: 1.65;
+
+  /* --- Border Radius --- */
+  --bs-border-radius: 0.375rem;
+  --bs-border-radius-lg: 0.75rem;
+  --bs-border-radius-pill: 50rem;
+
+  /* --- Shadows --- */
+  --bs-box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --bs-box-shadow-lg: 0 8px 32px rgba(20, 184, 166, 0.18);
+
+  /* --- Portfolio-specific custom properties --- */
+  --portfolio-hero-bg: linear-gradient(135deg, #0F172A 0%, #134E4A 100%);
+  --portfolio-section-gap: 5rem;
+  --portfolio-transition: 0.25s ease;
+  --portfolio-navbar-bg: #0F172A;
+  --portfolio-navbar-text: #E2E8F0;
+}
+
+/* ================================================================
+   STEP 2: Dark mode override.
+   ================================================================ */
+
+[data-bs-theme='dark'] {
+  --bs-body-bg: #0F172A;
+  --bs-body-color: #E2E8F0;
+  --bs-card-bg: #1E293B;
+  --portfolio-hero-bg: linear-gradient(135deg, #020617 0%, #0F172A 100%);
+}
+
+/* ================================================================
+   STEP 3: Component-level custom styles.
+   ================================================================ */
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Apply Syne to all headings */
+h1, h2, h3, h4, h5, h6,
+.navbar-brand,
+.card-title {
+  font-family: 'Syne', system-ui, -apple-system, sans-serif;
+}
+
+/* Hero section */
+#hero {
+  background: var(--portfolio-hero-bg);
+}
+
+/* Navbar: dark navy background matching the hero */
+.navbar {
+  background-color: var(--portfolio-navbar-bg) !important;
+  border-bottom: 1px solid rgba(20, 184, 166, 0.2);
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+  color: var(--portfolio-navbar-text) !important;
+}
+
+.navbar .nav-link:hover {
+  color: var(--bs-primary) !important;
+}
+
+/* Project card image: fixed height with cover fit */
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Section: consistent vertical padding */
+.portfolio-section {
+  padding-top: var(--portfolio-section-gap);
+  padding-bottom: var(--portfolio-section-gap);
+}
+
+/* Card hover: lift + teal glow */
+.card {
+  transition: transform var(--portfolio-transition),
+              box-shadow var(--portfolio-transition);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--bs-box-shadow-lg);
+}
+
+/* Progress bar: teal fill for primary bars */
+.progress-bar:not(.bg-secondary) {
+  background-color: var(--bs-primary);
+}
+
+/* Footer: dark background matching navbar */
+footer {
+  background-color: var(--portfolio-navbar-bg);
+  border-color: rgba(20, 184, 166, 0.2) !important;
+}
+
+footer p {
+  color: #94A3B8 !important;
+}

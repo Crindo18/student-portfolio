@@ -1,126 +1,422 @@
-/* css/style.css */
+/* =============================================================================
+   css/style.css
+   Token-to-CSS Mapping Worksheet implementation
+   Figma Tokens → Bootstrap 5 CSS Custom Properties
+   Theme: Dark Navy (neutral/900 = #0F172A) with Blue accent (brand/primary = #1E3A8A)
 
-/* ================================================================
-   STEP 1: Override Bootstrap CSS custom properties at :root.
-   This file is loaded AFTER Bootstrap CDN, so these values
-   take precedence over Bootstrap defaults globally.
-   ================================================================ */
+   LOAD ORDER: This file MUST be loaded AFTER the Bootstrap CDN link so that
+   these overrides take precedence over Bootstrap defaults globally.
+   ============================================================================= */
+
+/* =============================================================================
+   STEP 1 — FIGMA TOKEN → BOOTSTRAP CSS CUSTOM PROPERTY MAPPING
+   Token-to-CSS Worksheet (Section 2.5 of lab manual)
+
+   Figma Token         CSS Custom Property         Your Value
+   ─────────────────   ─────────────────────────   ─────────────────
+   brand/primary       --bs-primary                #1E3A8A  (navy blue)
+   brand/secondary     --bs-secondary              #1E40AF  (medium blue)
+   neutral/900         --bs-body-color             #0F172A  (near-black navy)
+   neutral/100         --bs-body-bg                #F0F4FF  (light blue-tinted bg)
+   neutral/white       --bs-card-bg                #FFFFFF
+   display/hero        --bs-font-sans-serif        'Syne', system-ui
+   border-radius       --bs-border-radius          0.375rem
+   border-radius-lg    --bs-border-radius-lg       0.75rem
+   ============================================================================= */
 
 :root {
-  /* --- Brand Colors: dark navy/teal palette --- */
-  --bs-primary: #14B8A6;           /* teal accent */
-  --bs-primary-rgb: 20, 184, 166;
-  --bs-secondary: #0F766E;         /* deep teal secondary */
-  --bs-secondary-rgb: 15, 118, 110;
+  /* ── brand/primary → --bs-primary ───────────────────────────────────────────
+     Figma token: rgba(20,184,166,1) originally, remapped to navy blue per request
+     Affects: buttons, links, badges, progress bars                            */
+  --bs-primary:           #1E3A8A;
+  --bs-primary-rgb:       30, 58, 138;
 
-  /* --- Body Colors --- */
-  --bs-body-color: #1E293B;
-  --bs-body-bg: #F0FDFA;           /* very light teal-tinted background */
+  /* ── brand/secondary → --bs-secondary ───────────────────────────────────────
+     Affects: secondary buttons and badges                                      */
+  --bs-secondary:         #1E40AF;
+  --bs-secondary-rgb:     30, 64, 175;
 
-  /* --- Typography: Syne for headings, Inter for body --- */
-  --bs-font-sans-serif: 'Syne', system-ui, -apple-system, sans-serif;
-  --bs-body-font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  --bs-body-font-size: 1rem;
-  --bs-body-line-height: 1.65;
+  /* ── neutral/900 → --bs-body-color ──────────────────────────────────────────
+     Figma token: rgba(15,23,42,1) = #0F172A
+     Affects: all body text                                                     */
+  --bs-body-color:        #0F172A;
 
-  /* --- Border Radius --- */
-  --bs-border-radius: 0.375rem;
-  --bs-border-radius-lg: 0.75rem;
+  /* ── neutral/100 → --bs-body-bg ─────────────────────────────────────────────
+     Figma token: rgba(240,253,250,1) = #F0FDFA (remapped to navy-tinted bg)
+     Affects: page background                                                   */
+  --bs-body-bg:           #F0F4FF;
+
+  /* ── neutral/white → --bs-card-bg ───────────────────────────────────────────
+     Figma token: rgba(255,255,255,1)
+     Affects: card and form backgrounds                                         */
+  --bs-card-bg:           #FFFFFF;
+
+  /* ── display/hero → --bs-font-sans-serif ────────────────────────────────────
+     Figma token: font-family "Syne", weight 700, size 64px
+     Affects: heading font family across all Bootstrap components               */
+  --bs-font-sans-serif:   'Syne', system-ui, -apple-system, sans-serif;
+  --bs-body-font-family:  'Inter', system-ui, -apple-system, sans-serif;
+  --bs-body-font-size:    1rem;         /* body/regular: 16px */
+  --bs-body-line-height:  1.65;
+
+  /* ── border-radius → --bs-border-radius ─────────────────────────────────────
+     Affects: cards, buttons, inputs (matches Figma 4px/6px corners)           */
+  --bs-border-radius:     0.375rem;     /* 6px — matches Figma button/input */
+  --bs-border-radius-lg:  0.75rem;      /* 12px — matches Figma card */
   --bs-border-radius-pill: 50rem;
 
-  /* --- Shadows --- */
-  --bs-box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  --bs-box-shadow-lg: 0 8px 32px rgba(20, 184, 166, 0.18);
+  /* ── Shadow tokens (not in worksheet, portfolio-specific) ───────────────── */
+  --bs-box-shadow:        0 4px 16px rgba(30, 58, 138, 0.08);
+  --bs-box-shadow-lg:     0 8px 32px rgba(30, 58, 138, 0.16);
 
-  /* --- Portfolio-specific custom properties --- */
-  --portfolio-hero-bg: linear-gradient(135deg, #0F172A 0%, #134E4A 100%);
-  --portfolio-section-gap: 5rem;
-  --portfolio-transition: 0.25s ease;
-  --portfolio-navbar-bg: #0F172A;
-  --portfolio-navbar-text: #E2E8F0;
+  /* ── Border color ────────────────────────────────────────────────────────── */
+  --bs-border-color:      #CBD5E1;
+
+  /* ── Portfolio-specific tokens (beyond the worksheet) ────────────────────── */
+  --portfolio-hero-bg:        linear-gradient(160deg, #0F172A 0%, #1E3A8A 100%);
+  --portfolio-navbar-bg:      #0F172A;
+  --portfolio-navbar-color:   #E2E8F0;
+  --portfolio-section-gap:    5rem;
+  --portfolio-transition:     0.25s ease;
+  --portfolio-footer-bg:      #0F172A;
+  --portfolio-footer-color:   #94A3B8;
 }
 
-/* ================================================================
-   STEP 2: Dark mode override.
-   ================================================================ */
-
+/* =============================================================================
+   STEP 2 — DARK MODE OVERRIDE
+   When data-bs-theme='dark' is set on <html>, these replace the light defaults.
+   ============================================================================= */
 [data-bs-theme='dark'] {
-  --bs-body-bg: #0F172A;
+  --bs-body-bg:    #0F172A;
   --bs-body-color: #E2E8F0;
-  --bs-card-bg: #1E293B;
-  --portfolio-hero-bg: linear-gradient(135deg, #020617 0%, #0F172A 100%);
+  --bs-card-bg:    #1E293B;
+  --portfolio-hero-bg: linear-gradient(160deg, #020617 0%, #0F172A 100%);
 }
 
-/* ================================================================
-   STEP 3: Component-level custom styles.
-   ================================================================ */
+/* =============================================================================
+   STEP 3 — COMPONENT-LEVEL CUSTOM STYLES
+   Use Bootstrap utility classes in HTML first.
+   Only write custom CSS when utilities are not sufficient.
+   ============================================================================= */
 
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Apply Syne to all headings */
+/* Apply Syne to headings only (body stays Inter per Figma body/regular token) */
 h1, h2, h3, h4, h5, h6,
-.navbar-brand,
-.card-title {
+.navbar-brand {
   font-family: 'Syne', system-ui, -apple-system, sans-serif;
 }
 
-/* Hero section */
+/* ── NAVBAR ─────────────────────────────────────────────────────────────────
+   Figma: white bg, 1px bottom border #e5e5e5, 64px height
+   Overridden here to match the navy theme                                    */
+#site-navbar {
+  background-color: var(--portfolio-navbar-bg) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  min-height: 64px;
+}
+
+#site-navbar .navbar-brand {
+  color: var(--portfolio-navbar-color);
+  font-weight: 700;
+  font-size: 1.25rem;    /* Figma: 20px */
+  letter-spacing: -0.04em;
+}
+
+#site-navbar .nav-link {
+  color: var(--portfolio-navbar-color) !important;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;   /* Figma: 14px — body/small */
+  letter-spacing: -0.03em;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+#site-navbar .nav-link:hover,
+#site-navbar .nav-link:focus {
+  color: #93C5FD !important;  /* light blue on hover */
+}
+
+#site-navbar .navbar-toggler {
+  border-color: rgba(255,255,255,0.3);
+}
+#site-navbar .navbar-toggler-icon {
+  filter: invert(1);
+}
+
+/* ── HERO ───────────────────────────────────────────────────────────────────
+   Figma: bg #0f172a (neutral/900), 900px height, center-aligned text stack  */
 #hero {
   background: var(--portfolio-hero-bg);
 }
 
-/* Navbar: dark navy background matching the hero */
-.navbar {
-  background-color: var(--portfolio-navbar-bg) !important;
-  border-bottom: 1px solid rgba(20, 184, 166, 0.2);
+/* Figma display/hero — Syne 700 64px */
+.hero-name {
+  font-family: 'Syne', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.5rem, 6vw, 4rem);   /* 64px at full width, scales down */
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 
-.navbar .navbar-brand,
-.navbar .nav-link {
-  color: var(--portfolio-navbar-text) !important;
+/* Figma display/h2 — Syne 700 40px */
+.hero-tagline {
+  font-family: 'Syne', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.25rem, 3vw, 2.5rem);
+  letter-spacing: -0.01em;
 }
 
-.navbar .nav-link:hover {
-  color: var(--bs-primary) !important;
+/* Figma body/regular — Inter 400 16px */
+.hero-body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1rem;
+  max-width: 560px;
+  line-height: 1.65;
 }
 
-/* Project card image: fixed height with cover fit */
-.card-img-top {
-  height: 200px;
-  object-fit: cover;
+.hero-eyebrow {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.75rem;   /* body/label: 12px */
+  font-weight: 500;
+  letter-spacing: 0.15em;
 }
 
-/* Section: consistent vertical padding */
+/* Hero CTA buttons: Figma button (white fill) + button-2 (outline white) */
+.btn-hero-filled {
+  background-color: #FFFFFF;
+  color: #0F172A;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  border-radius: var(--bs-border-radius);
+  transition: background-color var(--portfolio-transition),
+              transform var(--portfolio-transition);
+}
+.btn-hero-filled:hover {
+  background-color: #E2E8F0;
+  color: #0F172A;
+  transform: translateY(-2px);
+}
+
+.btn-hero-outline {
+  background-color: transparent;
+  color: #FFFFFF;
+  border: 2px solid #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  border-radius: var(--bs-border-radius);
+  transition: background-color var(--portfolio-transition),
+              transform var(--portfolio-transition);
+}
+.btn-hero-outline:hover {
+  background-color: rgba(255,255,255,0.1);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+/* ── SECTION SPACING ────────────────────────────────────────────────────────
+   Consistent padding using portfolio-specific token                         */
 .portfolio-section {
   padding-top: var(--portfolio-section-gap);
   padding-bottom: var(--portfolio-section-gap);
 }
 
-/* Card hover: lift + teal glow */
+/* ── SECTION HEADINGS ───────────────────────────────────────────────────────
+   Figma display/h2 — Syne 700 40px, color neutral/900                       */
+.section-heading {
+  font-family: 'Syne', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);   /* 40px at full width */
+  color: var(--bs-body-color);
+  letter-spacing: -0.01em;
+}
+
+/* ── PROJECT CARDS ──────────────────────────────────────────────────────────
+   Figma: 384×420, border-radius 8px, border #e5e5e5, overflow hidden
+   card-img-top = 192px height (16:9 ratio)                                  */
 .card {
+  border-radius: var(--bs-border-radius-lg) !important;
+  overflow: hidden;
   transition: transform var(--portfolio-transition),
               box-shadow var(--portfolio-transition);
 }
-
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--bs-box-shadow-lg);
+  box-shadow: var(--bs-box-shadow-lg) !important;
 }
 
-/* Progress bar: teal fill for primary bars */
-.progress-bar:not(.bg-secondary) {
+/* Figma: card image area is 192px (16:9 of 384px width) */
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Figma display/h3 — Syne 600 24px */
+.card-title {
+  font-family: 'Syne', system-ui, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--bs-body-color);
+  margin-bottom: 0.5rem;
+}
+
+/* Figma body/regular for card description */
+.card-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;   /* body/small: 14px */
+  line-height: 1.6;
+}
+
+/* Project tag badges — Figma div-22: #d4d4d4 bg, 4px radius, 12px label */
+.project-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  background-color: #DBEAFE;     /* blue-100 — matches navy theme */
+  color: #1E3A8A;                /* brand/primary */
+  border-radius: var(--bs-border-radius);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;            /* body/label: 12px */
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+/* Card action buttons: Figma button-3 (dark fill) + button-4 (dark outline) */
+.btn-card-primary {
   background-color: var(--bs-primary);
+  color: #FFFFFF;
+  border: 1px solid var(--bs-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  border-radius: var(--bs-border-radius);
+  transition: background-color var(--portfolio-transition);
+}
+.btn-card-primary:hover {
+  background-color: #1e40af;
+  border-color: #1e40af;
+  color: #FFFFFF;
 }
 
-/* Footer: dark background matching navbar */
-footer {
-  background-color: var(--portfolio-navbar-bg);
-  border-color: rgba(20, 184, 166, 0.2) !important;
+.btn-card-outline {
+  background-color: transparent;
+  color: var(--bs-primary);
+  border: 1px solid var(--bs-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  border-radius: var(--bs-border-radius);
+  transition: background-color var(--portfolio-transition),
+              color var(--portfolio-transition);
+}
+.btn-card-outline:hover {
+  background-color: var(--bs-primary);
+  color: #FFFFFF;
 }
 
-footer p {
-  color: #94A3B8 !important;
+/* ── ABOUT / SKILLS ─────────────────────────────────────────────────────────
+   Figma: bg #fafafa, two-column 584px + 584px layout                        */
+.body-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;          /* body/regular: 16px */
+  line-height: 1.65;
+  color: var(--bs-body-color);
+}
+
+/* Skill label: Figma body/small — Inter 400 14px, color #404040 */
+.skill-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #404040;
+}
+
+/* Skill percentage: Figma body/small — Inter 400 14px, color #737373 */
+.skill-pct {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  color: #737373;
+}
+
+/* Progress bars: pill shape, 8px height — matches Figma div-32 */
+.progress {
+  height: 8px;
+  border-radius: var(--bs-border-radius-pill);
+  background-color: #E2E8F0;
+}
+.progress-bar {
+  border-radius: var(--bs-border-radius-pill);
+  background-color: var(--bs-primary);    /* brand/primary */
+}
+.progress-bar.bg-secondary {
+  background-color: var(--bs-secondary) !important;
+}
+
+/* ── CONTACT SECTION ────────────────────────────────────────────────────────
+   Figma: white bg, centered form 608px wide, 64px vertical padding         */
+.form-control {
+  border-color: #D4D4D4;          /* Figma input border color */
+  border-radius: var(--bs-border-radius);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  color: var(--bs-body-color);
+}
+.form-control:focus {
+  border-color: var(--bs-primary);
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
+}
+
+.form-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;    /* body/small: 14px */
+  color: #404040;
+}
+
+/* Submit button: Figma button-5 — dark fill, centered, 113.8px wide */
+.btn-submit {
+  background-color: var(--bs-primary);
+  color: #FFFFFF;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  border-radius: var(--bs-border-radius);
+  min-width: 120px;
+  transition: background-color var(--portfolio-transition),
+              transform var(--portfolio-transition);
+}
+.btn-submit:hover {
+  background-color: #1e40af;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+/* Social links: Figma img placeholder replaced with text links */
+.social-link {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #64748B;
+  text-decoration: none;
+  transition: color var(--portfolio-transition);
+}
+.social-link:hover {
+  color: var(--bs-primary);
+}
+
+/* ── FOOTER ─────────────────────────────────────────────────────────────────
+   Figma: bg #262626 (using neutral/900 = #0F172A for navy consistency)
+   88px height, centered copyright text in #a3a3a3                          */
+.site-footer {
+  background-color: var(--portfolio-footer-bg);
+  padding: 2rem 0;          /* approx 88px total with text */
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.footer-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;          /* Figma: 16px */
+  color: var(--portfolio-footer-color);
+  letter-spacing: -0.03em;
 }

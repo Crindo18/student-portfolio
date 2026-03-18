@@ -5,12 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Portfolio of Christian John Alado, a Computer Engineering student at DLSU.">
-  <title>Christian John Alado | Portfolio</title>
+  <title>Christian.dev | Portfolio</title>
 
-  <!-- Google Font: Syne — load before Bootstrap CSS to avoid flash of unstyled text -->
+  <!-- Google Fonts: Syne (display/headings) + Inter (body) -->
+  <!-- Loaded BEFORE Bootstrap to prevent flash of unstyled text -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <!-- Bootstrap 5.3.8 CSS (CDN) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -18,17 +19,24 @@
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
     crossorigin="anonymous" />
 
-  <!-- Your custom overrides: must come AFTER Bootstrap CSS -->
+  <!-- Custom overrides: MUST come after Bootstrap CDN -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#navbarMain" data-bs-offset="80">
 
-  <!-- ===================== NAVBAR ===================== -->
-  <nav class="navbar navbar-expand-lg sticky-top">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="#hero">Crindo</a>
+  <!-- =====================================================================
+       NAVBAR
+       Figma: header — 64px height, white bg, bottom border #e5e5e5
+       Bootstrap: navbar navbar-expand-lg sticky-top
+       ===================================================================== -->
+  <nav class="navbar navbar-expand-lg sticky-top" id="site-navbar">
+    <div class="container-xl">
 
+      <!-- Brand: "Christian.dev" — Figma text-wrapper, 20px, #000 -->
+      <a class="navbar-brand" href="#hero">Christian.dev</a>
+
+      <!-- Mobile toggle -->
       <button
         class="navbar-toggler"
         type="button"
@@ -40,63 +48,206 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
+      <!-- Nav links: right-aligned, gap-4, 14px -->
       <div class="collapse navbar-collapse" id="navbarMain">
-        <ul class="navbar-nav ms-auto gap-1">
+        <ul class="navbar-nav ms-auto gap-1" role="list">
           <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
           <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
           <li class="nav-item">
-            <a class="btn btn-primary btn-sm ms-2 px-3" href="#contact">Contact</a>
+            <a class="btn btn-primary btn-sm ms-lg-3 px-3" href="#contact">Contact</a>
           </li>
         </ul>
       </div>
+
     </div>
   </nav>
 
-  <!-- ===================== MAIN ===================== -->
+  <!-- =====================================================================
+       MAIN CONTENT
+       ===================================================================== -->
   <main id="main-content">
 
-    <!-- ===== HERO SECTION ===== -->
-    <section id="hero" class="d-flex align-items-center justify-content-center min-vh-100 text-white">
+    <!-- ==================================================================
+         HERO SECTION
+         Figma: section — 1440×900, bg #0f172a (neutral/900)
+         Center-aligned text stack: name (h1, 64px Syne 700), tagline (h2),
+         paragraph, two CTA buttons side-by-side
+         Bootstrap: d-flex min-vh-100 align-items-center text-white
+         ================================================================== -->
+    <section id="hero"
+      class="d-flex align-items-center justify-content-center min-vh-100 text-white">
       <div class="container text-center">
-        <p class="text-uppercase fw-semibold mb-2 opacity-75" style="letter-spacing: 0.2em; font-size: 0.85rem;">
+
+        <!-- Eyebrow label above name -->
+        <p class="hero-eyebrow text-uppercase fw-semibold mb-3 opacity-75">
           Welcome to my portfolio
         </p>
-        <h1 class="display-1 fw-bold mb-3">Christian<br>John Alado</h1>
-        <p class="lead fs-4 mb-5 opacity-90">Computer Engineering Student at DLSU</p>
+
+        <!-- h1: Figma display/hero — Syne 700 64px -->
+        <h1 class="hero-name fw-bold mb-3">
+          Christian John Alado
+        </h1>
+
+        <!-- Tagline: Figma display/h2 — Syne 700 40px -->
+        <p class="hero-tagline mb-4 opacity-90">
+          Front-End Developer &amp; Student
+        </p>
+
+        <!-- Body paragraph: Figma body/regular — Inter 400 16px -->
+        <p class="hero-body mb-5 mx-auto opacity-75">
+          Computer Engineering student at DLSU-Manila, passionate about
+          hardware, embedded systems, and building things for the web.
+        </p>
+
+        <!-- CTA Buttons: Figma button (white fill) + button-2 (outline white) -->
         <div class="d-flex flex-wrap justify-content-center gap-3">
-          <a href="#projects" class="btn btn-primary btn-lg px-5">View My Work</a>
-          <a href="assets/cv.pdf" class="btn btn-outline-light btn-lg px-5" download>Download CV</a>
+          <a href="#projects" class="btn btn-hero-filled btn-lg px-5">
+            View My Work
+          </a>
+          <a href="assets/cv.pdf" class="btn btn-hero-outline btn-lg px-5" download>
+            Download CV
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         PROJECTS SECTION
+         Figma: section-2 — 1440×632, white bg
+         Heading centered, three 384px cards in a row with 32px gap
+         Each card: 16:9 image (192px), title, description, 3 tags, 2 buttons
+         Bootstrap: row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4
+         ================================================================== -->
+    <section id="projects" class="portfolio-section bg-white">
+      <div class="container-xl">
+
+        <!-- Section heading: Figma display/h2 — centered -->
+        <h2 class="section-heading text-center mb-5">Projects</h2>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+          <!-- Card 1: ELM Prestige -->
+          <div class="col">
+            <article class="card h-100 border-0 shadow-sm">
+              <img
+                src="assets/images/project1.png"
+                class="card-img-top"
+                alt="Screenshot of ELM Prestige luxury ecommerce platform"
+                loading="lazy"
+                width="384"
+                height="216">
+              <div class="card-body d-flex flex-column px-4 py-4">
+                <h3 class="card-title">ELM Prestige</h3>
+                <p class="card-text text-body-secondary flex-grow-1 mb-3">
+                  A high-end ecommerce platform built for luxury product sales,
+                  featuring a polished storefront UI.
+                </p>
+                <!-- Tags: Figma div-22 — small rounded badges -->
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  <span class="project-tag">HTML</span>
+                  <span class="project-tag">CSS</span>
+                  <span class="project-tag">JavaScript</span>
+                </div>
+                <!-- Buttons: Figma button-3 (filled dark) + button-4 (outline dark) -->
+                <div class="mt-auto d-flex gap-2">
+                  <a href="#" class="btn btn-card-primary btn-sm">Demo</a>
+                  <a href="#" class="btn btn-card-outline btn-sm">Code</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Card 2: Plantita-fi -->
+          <div class="col">
+            <article class="card h-100 border-0 shadow-sm">
+              <img
+                src="assets/images/project2.png"
+                class="card-img-top"
+                alt="Screenshot of Plantita-fi smart urban farming IoT dashboard"
+                loading="lazy"
+                width="384"
+                height="216">
+              <div class="card-body d-flex flex-column px-4 py-4">
+                <h3 class="card-title">Plantita-fi</h3>
+                <p class="card-text text-body-secondary flex-grow-1 mb-3">
+                  Smart urban farming solution with IoT sensor integration,
+                  enabling real-time plant condition monitoring.
+                </p>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  <span class="project-tag">Python</span>
+                  <span class="project-tag">IoT</span>
+                  <span class="project-tag">HTML</span>
+                </div>
+                <div class="mt-auto d-flex gap-2">
+                  <a href="#" class="btn btn-card-primary btn-sm">Demo</a>
+                  <a href="#" class="btn btn-card-outline btn-sm">Code</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Card 3: Advising System -->
+          <div class="col">
+            <article class="card h-100 border-0 shadow-sm">
+              <img
+                src="assets/images/project3.png"
+                class="card-img-top"
+                alt="Screenshot of the student academic advising system"
+                loading="lazy"
+                width="384"
+                height="216">
+              <div class="card-body d-flex flex-column px-4 py-4">
+                <h3 class="card-title">Advising System</h3>
+                <p class="card-text text-body-secondary flex-grow-1 mb-3">
+                  Student support platform that streamlines academic advising
+                  workflows and consultation scheduling.
+                </p>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  <span class="project-tag">JavaScript</span>
+                  <span class="project-tag">Bootstrap 5</span>
+                  <span class="project-tag">CSS</span>
+                </div>
+                <div class="mt-auto d-flex gap-2">
+                  <a href="#" class="btn btn-card-primary btn-sm">Demo</a>
+                  <a href="#" class="btn btn-card-outline btn-sm">Code</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- ===== ABOUT SECTION ===== -->
+    <!-- ==================================================================
+         ABOUT + SKILLS SECTION  (two-column layout)
+         Figma: section-3 — 1440×404, bg #fafafa (neutral/100)
+         Left col (584px): About heading + 2 paragraph blocks
+         Right col (584px): Skills heading + 4 progress bars
+         Bootstrap: row g-5 col-12 col-lg-6
+         ================================================================== -->
     <section id="about" class="portfolio-section bg-body-tertiary">
-      <div class="container">
-        <div class="row align-items-center g-5">
+      <div class="container-xl">
+        <div class="row g-5">
 
-          <div class="col-12 col-md-4 text-center">
-            <img
-              src="assets/images/profile.jpg"
-              alt="Profile
-              class="img-fluid rounded-circle shadow"
-              style="max-width: 260px;">
-          </div>
-
-          <div class="col-12 col-md-8">
-            <h2 class="mb-4">About Me</h2>
-            <p class="lead">
-              I'm a Computer Engineering student at De La Salle University,
-              passionate about hardware, software, and design. I enjoy building
-              things at the intersection of electronics and code.
+          <!-- LEFT: About -->
+          <div class="col-12 col-lg-6" id="about-col">
+            <h2 class="section-heading mb-4">About</h2>
+            <p class="body-text mb-3">
+              I'm a 3rd Year Computer Engineering student at De La Salle University
+              Manila, focused on embedded systems, low-level programming, and
+              building things for the web. I'm the EVP for Operations at ACCESS
+              and EVP at SYNTAX.
             </p>
-            <p>
-              Outside of coursework, I explore embedded systems, work on personal
-              web projects, and develop IoT solutions. I'm always looking for
-              opportunities to apply what I learn in real-world contexts.
+            <p class="body-text mb-4">
+              Outside of coursework I explore Arduino and PIC microcontroller
+              projects, personal web portfolios, and IoT solutions. I'm always
+              looking for opportunities to apply what I learn in real-world contexts.
             </p>
-            <div class="d-flex flex-wrap gap-2 mt-4">
+            <!-- Skill badges -->
+            <div class="d-flex flex-wrap gap-2">
               <span class="badge bg-primary">HTML</span>
               <span class="badge bg-primary">CSS</span>
               <span class="badge bg-primary">JavaScript</span>
@@ -108,293 +259,186 @@
             </div>
           </div>
 
-        </div>
-      </div>
-    </section>
+          <!-- RIGHT: Skills -->
+          <div class="col-12 col-lg-6" id="skills">
+            <h2 class="section-heading mb-4">Skills</h2>
 
-    <!-- ===== PROJECTS SECTION ===== -->
-    <section id="projects" class="portfolio-section">
-      <div class="container">
-        <h2 class="text-center mb-2">Projects</h2>
-        <p class="text-center text-body-secondary mb-5">
-          A selection of work from my coursework and personal projects.
-        </p>
-
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-
-          <!-- Card 1: ELM Prestige -->
-          <div class="col">
-            <article class="card h-100 shadow-sm border-0">
-              <img
-                src="assets/images/elm.png"
-                class="card-img-top"
-                alt="Screenshot of ELM Prestige luxury ecommerce platform"
-                loading="lazy"
-                width="400"
-                height="200">
-              <div class="card-body d-flex flex-column">
-                <h3 class="card-title h5">ELM Prestige</h3>
-                <p class="card-text text-body-secondary flex-grow-1">
-                  A high-end ecommerce platform built for luxury product sales,
-                  featuring a curated product catalog and a polished storefront UI.
-                </p>
-                <div class="d-flex flex-wrap gap-2 mb-3">
-                  <span class="badge bg-primary-subtle text-primary-emphasis">HTML</span>
-                  <span class="badge bg-secondary-subtle text-secondary-emphasis">CSS</span>
-                  <span class="badge bg-primary-subtle text-primary-emphasis">JavaScript</span>
-                </div>
-                <div class="mt-auto d-flex gap-2">
-                  <a href="#" class="btn btn-primary btn-sm">Live Demo</a>
-                  <a href="#" class="btn btn-outline-secondary btn-sm">GitHub</a>
-                </div>
-              </div>
-            </article>
-          </div>
-
-          <!-- Card 2: Plantita-fi -->
-          <div class="col">
-            <article class="card h-100 shadow-sm border-0">
-              <img
-                src="assets/images/plantita.png"
-                class="card-img-top"
-                alt="Screenshot of Plantita-fi smart urban farming IoT dashboard"
-                loading="lazy"
-                width="400"
-                height="200">
-              <div class="card-body d-flex flex-column">
-                <h3 class="card-title h5">Plantita-fi</h3>
-                <p class="card-text text-body-secondary flex-grow-1">
-                  A smart urban farming solution with IoT sensor integration,
-                  enabling real-time monitoring of plant conditions and automated care.
-                </p>
-                <div class="d-flex flex-wrap gap-2 mb-3">
-                  <span class="badge bg-primary-subtle text-primary-emphasis">Python</span>
-                  <span class="badge bg-secondary-subtle text-secondary-emphasis">IoT</span>
-                  <span class="badge bg-primary-subtle text-primary-emphasis">HTML</span>
-                </div>
-                <div class="mt-auto d-flex gap-2">
-                  <a href="#" class="btn btn-primary btn-sm">Live Demo</a>
-                  <a href="#" class="btn btn-outline-secondary btn-sm">GitHub</a>
-                </div>
-              </div>
-            </article>
-          </div>
-
-          <!-- Card 3: Advising System -->
-          <div class="col">
-            <article class="card h-100 shadow-sm border-0">
-              <img
-                src="assets/images/advisync.png"
-                class="card-img-top"
-                alt="Screenshot of the student academic advising system"
-                loading="lazy"
-                width="400"
-                height="200">
-              <div class="card-body d-flex flex-column">
-                <h3 class="card-title h5">Advising System</h3>
-                <p class="card-text text-body-secondary flex-grow-1">
-                  A student support platform that streamlines academic advising
-                  workflows, making it easier to track requirements and schedule consultations.
-                </p>
-                <div class="d-flex flex-wrap gap-2 mb-3">
-                  <span class="badge bg-primary-subtle text-primary-emphasis">JavaScript</span>
-                  <span class="badge bg-secondary-subtle text-secondary-emphasis">Bootstrap 5</span>
-                  <span class="badge bg-primary-subtle text-primary-emphasis">CSS</span>
-                </div>
-                <div class="mt-auto d-flex gap-2">
-                  <a href="#" class="btn btn-primary btn-sm">Live Demo</a>
-                  <a href="#" class="btn btn-outline-secondary btn-sm">GitHub</a>
-                </div>
-              </div>
-            </article>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== SKILLS SECTION ===== -->
-    <section id="skills" class="portfolio-section bg-body-tertiary">
-      <div class="container">
-        <h2 class="text-center mb-5">Skills</h2>
-
-        <div class="row g-5 justify-content-center">
-
-          <div class="col-12 col-md-6 col-lg-5">
-            <h3 class="h5 mb-4">Languages</h3>
-
+            <!-- HTML -->
             <div class="mb-4">
               <div class="d-flex justify-content-between mb-1">
-                <span class="fw-medium">HTML</span>
-                <span class="text-body-secondary small">95%</span>
+                <span class="skill-label">HTML</span>
+                <span class="skill-pct">95%</span>
               </div>
               <div class="progress" role="progressbar"
                 aria-label="HTML skill level"
                 aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar" style="width: 95%"></div>
+                <div class="progress-bar" style="width:95%"></div>
               </div>
             </div>
 
+            <!-- CSS -->
             <div class="mb-4">
               <div class="d-flex justify-content-between mb-1">
-                <span class="fw-medium">CSS</span>
-                <span class="text-body-secondary small">90%</span>
+                <span class="skill-label">CSS</span>
+                <span class="skill-pct">90%</span>
               </div>
               <div class="progress" role="progressbar"
                 aria-label="CSS skill level"
                 aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar" style="width: 90%"></div>
+                <div class="progress-bar" style="width:90%"></div>
               </div>
             </div>
 
+            <!-- JavaScript -->
             <div class="mb-4">
               <div class="d-flex justify-content-between mb-1">
-                <span class="fw-medium">JavaScript</span>
-                <span class="text-body-secondary small">75%</span>
+                <span class="skill-label">JavaScript</span>
+                <span class="skill-pct">75%</span>
               </div>
               <div class="progress" role="progressbar"
                 aria-label="JavaScript skill level"
                 aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar" style="width: 75%"></div>
+                <div class="progress-bar" style="width:75%"></div>
               </div>
             </div>
 
+            <!-- Python -->
             <div class="mb-4">
               <div class="d-flex justify-content-between mb-1">
-                <span class="fw-medium">Python</span>
-                <span class="text-body-secondary small">70%</span>
+                <span class="skill-label">Python</span>
+                <span class="skill-pct">70%</span>
               </div>
               <div class="progress" role="progressbar"
                 aria-label="Python skill level"
                 aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar" style="width: 70%"></div>
+                <div class="progress-bar" style="width:70%"></div>
               </div>
             </div>
 
+            <!-- Verilog -->
             <div class="mb-4">
               <div class="d-flex justify-content-between mb-1">
-                <span class="fw-medium">Verilog</span>
-                <span class="text-body-secondary small">65%</span>
+                <span class="skill-label">Verilog</span>
+                <span class="skill-pct">65%</span>
               </div>
               <div class="progress" role="progressbar"
                 aria-label="Verilog skill level"
                 aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar" style="width: 65%"></div>
+                <div class="progress-bar" style="width:65%"></div>
               </div>
             </div>
-          </div>
 
-          <div class="col-12 col-md-6 col-lg-5">
-            <h3 class="h5 mb-4">Tools &amp; Frameworks</h3>
-
+            <!-- Bootstrap 5 -->
             <div class="mb-4">
               <div class="d-flex justify-content-between mb-1">
-                <span class="fw-medium">Bootstrap 5</span>
-                <span class="text-body-secondary small">85%</span>
+                <span class="skill-label">Bootstrap 5</span>
+                <span class="skill-pct">85%</span>
               </div>
               <div class="progress" role="progressbar"
                 aria-label="Bootstrap 5 skill level"
                 aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar bg-secondary" style="width: 85%"></div>
+                <div class="progress-bar bg-secondary" style="width:85%"></div>
               </div>
             </div>
 
-            <div class="mb-4">
+            <!-- Git & GitHub -->
+            <div class="mb-0">
               <div class="d-flex justify-content-between mb-1">
-                <span class="fw-medium">Figma</span>
-                <span class="text-body-secondary small">80%</span>
-              </div>
-              <div class="progress" role="progressbar"
-                aria-label="Figma skill level"
-                aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar bg-secondary" style="width: 80%"></div>
-              </div>
-            </div>
-
-            <div class="mb-4">
-              <div class="d-flex justify-content-between mb-1">
-                <span class="fw-medium">Git &amp; GitHub</span>
-                <span class="text-body-secondary small">75%</span>
+                <span class="skill-label">Git &amp; GitHub</span>
+                <span class="skill-pct">75%</span>
               </div>
               <div class="progress" role="progressbar"
                 aria-label="Git and GitHub skill level"
                 aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar bg-secondary" style="width: 75%"></div>
+                <div class="progress-bar bg-secondary" style="width:75%"></div>
               </div>
             </div>
 
-            <div class="mb-4">
-              <div class="d-flex justify-content-between mb-1">
-                <span class="fw-medium">Xilinx Vivado</span>
-                <span class="text-body-secondary small">70%</span>
-              </div>
-              <div class="progress" role="progressbar"
-                aria-label="Xilinx Vivado skill level"
-                aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar bg-secondary" style="width: 70%"></div>
-              </div>
-            </div>
-
-            <div class="mb-4">
-              <div class="d-flex justify-content-between mb-1">
-                <span class="fw-medium">VS Code</span>
-                <span class="text-body-secondary small">90%</span>
-              </div>
-              <div class="progress" role="progressbar"
-                aria-label="VS Code skill level"
-                aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar bg-secondary" style="width: 90%"></div>
-              </div>
-            </div>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- ===== CONTACT SECTION ===== -->
-    <section id="contact" class="portfolio-section">
+    <!-- ==================================================================
+         CONTACT SECTION
+         Figma: section-4 — centered form, 608px wide, padding 64px 384px
+         Name input, Email input, Message textarea, Submit button (centered)
+         Social links row below
+         Bootstrap: justify-content-center col-12 col-lg-7
+         ================================================================== -->
+    <section id="contact" class="portfolio-section bg-white">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-12 col-lg-7">
-            <h2 class="text-center mb-2">Get in Touch</h2>
-            <p class="text-center text-body-secondary mb-5">
+
+            <h2 class="section-heading text-center mb-2">Contact</h2>
+            <p class="body-text text-center text-body-secondary mb-5">
               I'm open to internship opportunities and project collaborations.
             </p>
 
-            <form novalidate>
+            <!-- novalidate: disables browser default validation UI -->
+            <form novalidate aria-label="Contact form">
+
               <div class="mb-3">
                 <label for="contactName" class="form-label fw-medium">Name</label>
-                <input type="text" class="form-control" id="contactName"
-                  placeholder="Your full name" required>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="contactName"
+                  name="name"
+                  autocomplete="name"
+                  placeholder="Your full name"
+                  aria-required="true"
+                  required>
               </div>
 
               <div class="mb-3">
                 <label for="contactEmail" class="form-label fw-medium">Email</label>
-                <input type="email" class="form-control" id="contactEmail"
-                  placeholder="your@email.com" required>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="contactEmail"
+                  name="email"
+                  autocomplete="email"
+                  placeholder="your@email.com"
+                  aria-required="true"
+                  required>
               </div>
 
               <div class="mb-4">
                 <label for="contactMessage" class="form-label fw-medium">Message</label>
-                <textarea class="form-control" id="contactMessage"
-                  rows="5" placeholder="Your message here..." required></textarea>
+                <textarea
+                  class="form-control"
+                  id="contactMessage"
+                  name="message"
+                  rows="5"
+                  placeholder="Your message here..."
+                  aria-required="true"
+                  required></textarea>
               </div>
 
-              <button type="submit" class="btn btn-primary w-100 py-2">
-                Send Message
-              </button>
+              <!-- Figma: Submit button centered, dark fill, 113.8px wide -->
+              <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-submit px-5 py-2">
+                  Submit
+                </button>
+              </div>
+
             </form>
 
+            <!-- Social links row — Figma: img placeholder 608×48 -->
             <div class="d-flex justify-content-center gap-4 mt-5">
               <a href="https://github.com/Crindo18"
-                class="text-body-secondary text-decoration-none fw-medium"
+                class="social-link"
                 target="_blank" rel="noopener noreferrer">GitHub</a>
               <a href="https://linkedin.com/in/christianjohnalado"
-                class="text-body-secondary text-decoration-none fw-medium"
+                class="social-link"
                 target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href="https://instagram.com/ceejj18"
+                class="social-link"
+                target="_blank" rel="noopener noreferrer">Instagram</a>
               <a href="mailto:christianjohn.alado@dlsu.edu.ph"
-                class="text-body-secondary text-decoration-none fw-medium">Email</a>
+                class="social-link">Email</a>
             </div>
 
           </div>
@@ -404,15 +448,19 @@
 
   </main>
 
-  <!-- ===================== FOOTER ===================== -->
-  <footer class="py-4 border-top">
-    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
-      <p class="mb-0 text-body-secondary small">Built with Bootstrap 5. Hosted on Vercel.</p>
-      <p class="mb-0 text-body-secondary small">Christian John Alado &copy; 2026</p>
+  <!-- =====================================================================
+       FOOTER
+       Figma: footer — bg #262626 (neutral/900), 88px, centered copyright
+       ===================================================================== -->
+  <footer class="site-footer">
+    <div class="container-xl">
+      <p class="footer-text text-center mb-0">
+        &copy; 2026 Christian.dev. All rights reserved.
+      </p>
     </div>
   </footer>
 
-  <!-- Bootstrap 5.3.8 JS Bundle (CDN) -->
+  <!-- Bootstrap 5.3.8 JS Bundle (CDN) — placed just before </body> -->
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"

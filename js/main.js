@@ -1,14 +1,10 @@
 // js/main.js
-
-// Bootstrap JS is loaded via CDN bundle and activates automatically.
+// Bootstrap CDN bundle activates automatically via data-bs-* attributes.
 // This file adds optional portfolio-specific enhancements.
 
 // --- Dark Mode Toggle ---
-// To use: add <button id="theme-toggle" class="btn btn-sm btn-outline-secondary">Dark Mode</button>
-// anywhere in your navbar or page.
-
+// Add <button id="theme-toggle"> anywhere in your HTML to use this.
 const themeToggle = document.getElementById('theme-toggle');
-
 if (themeToggle) {
   themeToggle.addEventListener('click', () => {
     const html = document.documentElement;
@@ -18,10 +14,9 @@ if (themeToggle) {
   });
 }
 
-// --- Active nav link on scroll (Intersection Observer) ---
-// ScrollSpy is already active via data-bs-spy on the <body> tag.
-// This is a manual fallback.
-
+// --- Active nav link highlight on scroll (Intersection Observer) ---
+// ScrollSpy is already active via data-bs-spy on <body>.
+// This is a manual fallback for reliability.
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-link');
 

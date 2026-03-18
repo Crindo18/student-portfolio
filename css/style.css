@@ -1,71 +1,24 @@
-/* =============================================================================
-   css/style.css
-   Token-to-CSS Mapping Worksheet implementation
-   Figma Tokens → Bootstrap 5 CSS Custom Properties
-   Theme: Dark Navy (neutral/900 = #0F172A) with Blue accent (brand/primary = #1E3A8A)
-
-   LOAD ORDER: This file MUST be loaded AFTER the Bootstrap CDN link so that
-   these overrides take precedence over Bootstrap defaults globally.
-   ============================================================================= */
-
-/* =============================================================================
-   STEP 1 — FIGMA TOKEN → BOOTSTRAP CSS CUSTOM PROPERTY MAPPING
-   Token-to-CSS Worksheet (Section 2.5 of lab manual)
-
-   Figma Token         CSS Custom Property         Your Value
-   ─────────────────   ─────────────────────────   ─────────────────
-   brand/primary       --bs-primary                #1E3A8A  (navy blue)
-   brand/secondary     --bs-secondary              #1E40AF  (medium blue)
-   neutral/900         --bs-body-color             #0F172A  (near-black navy)
-   neutral/100         --bs-body-bg                #F0F4FF  (light blue-tinted bg)
-   neutral/white       --bs-card-bg                #FFFFFF
-   display/hero        --bs-font-sans-serif        'Syne', system-ui
-   border-radius       --bs-border-radius          0.375rem
-   border-radius-lg    --bs-border-radius-lg       0.75rem
-   ============================================================================= */
-
 :root {
-  /* ── brand/primary → --bs-primary ───────────────────────────────────────────
-     Figma token: rgba(20,184,166,1) originally, remapped to navy blue per request
-     Affects: buttons, links, badges, progress bars                            */
+
   --bs-primary:           #1E3A8A;
   --bs-primary-rgb:       30, 58, 138;
 
-  /* ── brand/secondary → --bs-secondary ───────────────────────────────────────
-     Affects: secondary buttons and badges                                      */
   --bs-secondary:         #1E40AF;
   --bs-secondary-rgb:     30, 64, 175;
-
-  /* ── neutral/900 → --bs-body-color ──────────────────────────────────────────
-     Figma token: rgba(15,23,42,1) = #0F172A
-     Affects: all body text                                                     */
   --bs-body-color:        #0F172A;
-
-  /* ── neutral/100 → --bs-body-bg ─────────────────────────────────────────────
-     Figma token: rgba(240,253,250,1) = #F0FDFA (remapped to navy-tinted bg)
-     Affects: page background                                                   */
   --bs-body-bg:           #F0F4FF;
-
-  /* ── neutral/white → --bs-card-bg ───────────────────────────────────────────
-     Figma token: rgba(255,255,255,1)
-     Affects: card and form backgrounds                                         */
   --bs-card-bg:           #FFFFFF;
 
-  /* ── display/hero → --bs-font-sans-serif ────────────────────────────────────
-     Figma token: font-family "Syne", weight 700, size 64px
-     Affects: heading font family across all Bootstrap components               */
   --bs-font-sans-serif:   'Syne', system-ui, -apple-system, sans-serif;
   --bs-body-font-family:  'Inter', system-ui, -apple-system, sans-serif;
   --bs-body-font-size:    1rem;         /* body/regular: 16px */
   --bs-body-line-height:  1.65;
 
-  /* ── border-radius → --bs-border-radius ─────────────────────────────────────
-     Affects: cards, buttons, inputs (matches Figma 4px/6px corners)           */
-  --bs-border-radius:     0.375rem;     /* 6px — matches Figma button/input */
-  --bs-border-radius-lg:  0.75rem;      /* 12px — matches Figma card */
+
+  --bs-border-radius:     0.375rem;   
+  --bs-border-radius-lg:  0.75rem;      
   --bs-border-radius-pill: 50rem;
 
-  /* ── Shadow tokens (not in worksheet, portfolio-specific) ───────────────── */
   --bs-box-shadow:        0 4px 16px rgba(30, 58, 138, 0.08);
   --bs-box-shadow-lg:     0 8px 32px rgba(30, 58, 138, 0.16);
 
